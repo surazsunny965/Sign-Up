@@ -5,9 +5,11 @@ import { PrismaClient } from '@prisma/client'
 //   name: string
 // }
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+
   let prisma = new PrismaClient()
+
   let response: any
-  if (!req.body.email) return 'missing email'
+  console.log(req.body)
   if (req.method === "POST") {
     response = await prisma.signup.create({
       data: {
@@ -15,14 +17,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         company_name: req.body.company_name,
         password: req.body.password,
         confirm_password: req.body.confirm_password,
-        mobile_number: parseInt(req.body.mobile_number)
+        mobile_number: req.body.mobile_number
       }
     })
     console.log(response)
   }
   if (req.method === "GET") {
-    response = await prisma.signup.findMany({})
+    response = await prisma.signup.findMany()
     console.log(response)
+    return res.status(200).send("ghdgfhsd")
   }
   return res.status(200).send(response)
 }

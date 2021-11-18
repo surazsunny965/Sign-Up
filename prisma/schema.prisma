@@ -21,7 +21,7 @@ model signup{
   company_name      String ?
   password          String? 
   confirm_password String
-  mobile_number    Int    ?    @unique
+  mobile_number    String   ?    
   createdAt        DateTime?   @default(now())
   updatedAt        DateTime?   @updatedAt
 
