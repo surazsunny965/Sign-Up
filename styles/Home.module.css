@@ -1,0 +1,104 @@
+.totalSIgnUpContainer{
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+.rootFiContainer{
+  background-color: grey;
+  height: 100vh;
+  flex: 3;
+  min-width: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* align-items: flex-end; */
+  padding: 10px;
+  overflow:hidden;
+}
+.RootFiText{
+  color: aqua;
+  font-size: 40px;
+}
+.RootFiDEscription{
+  color: #fafafa;
+  font-size:80px;
+  font-family: 'Poppins';
+  margin: 0px;
+}
+
+.RootFISignUpcontainer {
+  padding: 0 2rem;
+  flex: 1;
+}
+.innerSignupCOntainer{
+  /* align-items: center; */
+  display: flex;
+  flex-direction: column;
+}
+.RootFiSignUpHeading{
+  color: bisque;
+  
+}
+
+.signUpDashboardText{
+  font-size: large;
+  margin:0px ;
+}
+.myInput {
+  padding: 8px 10px;
+  border-radius: 3px;
+  border: 1.5px grey solid;
+  width: 95%;
+  margin-bottom: 5px;
+}
+.invalidfeedback{
+  color: red;
+  font-size: 10px;
+}
+.starSignUp{
+  color: red;
+}
+.inputDescription{
+    font-size: x-small;
+}
+.sButton {
+  width: 95%;
+  border: none;
+  border-radius: 5px;
+  padding: 15px;
+  color: white;
+  margin: 10px 0px;
+  background-color: rgb(78, 76, 76);
+ }
+ .thankyouCardContainer{
+  background-color:rgb(167, 239, 241);
+  width: 95%;
+  margin:10px 0px;
+  border-radius: 5px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: rgb(17, 192, 17);
+  padding: 10px;
+  align-items: flex-start;
+}
+.thankyouCardPara{
+  font-size: 14px;
+}
+
+.thankyouCardParaFirst{
+  color: green;
+  font-size: 20px;
+}
+
+.termsAndConditions{
+  font-size: x-small;
+}
+
+.termsAndConditionsMiddle{
+  color: #0070f3;
+  font-size: x-small;
+}
+.loginLine{
+  color:rgb(22, 22, 233);
+  cursor: pointer;
+}
