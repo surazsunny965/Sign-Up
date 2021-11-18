@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import { withRouter } from 'next/router';
 import { useRouter } from 'next/router'
 import React, { useState, useEffect } from 'react';
 import  {useForm} from 'react-hook-form';
@@ -6,6 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as Yup from 'yup';
 import "yup-phone";
 import styles from '../styles/Home.module.css'
+import type { NextApiRequest, NextApiResponse } from 'next'
 
 
 const Home: NextPage = () => {
@@ -27,18 +29,18 @@ const Home: NextPage = () => {
   }, [])
 
   const validationSchema = Yup.object().shape({
-    workCompany: Yup.string()
+    company_name: Yup.string()
         .required('Work Company is required'),
-    email: Yup.string()
+    work_email: Yup.string()
         .required('Email is required')
         .email('Email is invalid'),
     password: Yup.string()
         .min(6, 'Password must be at least 6 characters')
         .required('Password is required'),
-    confirmPassword: Yup.string()
+    confirm_password: Yup.string()
         .oneOf([Yup.ref('password'), null], 'Passwords must match')
         .required('Confirm Password is required'),
-    mobileNumber:Yup.string().phone('IN',true)
+    mobile_number:Yup.string().phone('IN',true)
         .required('Enter valid Mobile Number'),
     acceptTerms: Yup.bool()
         .oneOf([true], 'Accept Ts & Cs is required')
@@ -54,9 +56,15 @@ function aboutPage(){
   router.push("/login");
 }
 
-function onSubmit(data:any) {
-  console.log(data)
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(data, null, 4));
+async function onSubmit(total:any) {
+  console.log(total)
+  let lol = await fetch('http://localhost:3004/api/hello',{
+    body:JSON.stringify(total),
+    method:"POST"
+  })
+  console.log(lol)
+  
+    alert('SUCCESS!! :-)\n\n' + JSON.stringify(total, null, 4));
     setIsSubmit(isSubmit => !isSubmit)
     return false
 }
@@ -78,11 +86,11 @@ function onSubmit(data:any) {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
           <label className={styles.inputDescription}><span className={styles.starSignUp}>* </span><b>Work Email</b></label>
-          <input type="email" {...register('email')} placeholder="work Email" className={styles.myInput}/>
+          <input type="email" {...register('work_email')} placeholder="work Email" className={styles.myInput}/>
           <p className={styles.invalidfeedback}>{errors.email?.message}</p></div>
           <div>
           <label className={styles.inputDescription}><span className={styles.starSignUp}>* </span><b>Work Company</b></label>
-          <input type="text"{...register('workCompany')} placeholder="work Company" className={styles.myInput}/></div>
+          <input type="text"{...register('company_name')} placeholder="work Company" className={styles.myInput}/></div>
           <p className={styles.invalidfeedback}>{errors.workCompany?.message}</p><div>
           <label className={styles.inputDescription}><span className={styles.starSignUp}>* </span><b>Password</b></label>
           <input type="password" {...register('password')} placeholder="Enter your Password" className={styles.myInput}/>
@@ -90,12 +98,12 @@ function onSubmit(data:any) {
           </div>
           <div>
           <label className={styles.inputDescription}><span className={styles.starSignUp}>* </span><b>Confirm Password</b></label>
-          <input type="password" {...register('confirmPassword')} placeholder="Re-Enter Your Password" className={styles.myInput}/>
+          <input type="password" {...register('confirm_password')} placeholder="Re-Enter Your Password" className={styles.myInput}/>
           <p className={styles.invalidfeedback}>{errors.confirmPassword?.message}</p>
           </div>
           <div>
           <label className={styles.inputDescription}><span className={styles.starSignUp}>* </span><b>Mobile Number</b></label>
-          <input type="text" {...register('mobileNumber')} placeholder="Enter Your Number" className={styles.myInput}/>
+          <input type="text" {...register('mobile_number')} placeholder="Enter Your Number" className={styles.myInput}/>
           <p className={styles.invalidfeedback}>{errors.mobileNumber?.message}</p>
           </div>
           <button type="submit" className={styles.sButton}>Register</button>
@@ -116,4 +124,4 @@ function onSubmit(data:any) {
   )
 }
 
-export default Home;
+export default withRouter(Home);
