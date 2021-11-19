@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { PrismaClient, users_table } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
