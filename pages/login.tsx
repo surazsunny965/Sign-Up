@@ -51,7 +51,7 @@ const Login: NextPage = () => {
     const response: any = await lol.text();
     if (response === "invalid-email") return alert("Invalid email")
     if (response === "invalid-password") return alert("Invalid Password")
-    alert("HURRAY!!!")
+    router.push('/welcome')
     return false
   }
 
