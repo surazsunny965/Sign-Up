@@ -1,32 +1,29 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { PrismaClient } from '@prisma/client'
-// type Data = {
-//   name: string
-// }
+import { PrismaClient, users_table } from '@prisma/client'
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
   let prisma = new PrismaClient()
 
   let response: any
-  console.log(req.body)
+  const data = JSON.parse(req.body)
   if (req.method === "POST") {
-    response = await prisma.signup.create({
-      data: {
-        work_email: req.body.work_email,
-        company_name: req.body.company_name,
-        password: req.body.password,
-        confirm_password: req.body.confirm_password,
-        mobile_number: req.body.mobile_number
-      }
-    })
-    console.log(response)
+    try {
+      response = await prisma.users_table.create({
+        data: {
+          work_email: data.work_email,
+          company_name: data.company_name,
+          password: data.password,
+          mobile_number: data.mobile_number
+        }
+      })
+    }
+    catch (error) {
+      return res.send("Email Already Exists")
+    }
   }
   if (req.method === "GET") {
-    response = await prisma.signup.findMany()
-    console.log(response)
-    return res.status(200).send("ghdgfhsd")
+    response = await prisma.users_table.findMany()
   }
   return res.status(200).send(response)
 }
-// company_name:req.body.company_name,password:req.body.password

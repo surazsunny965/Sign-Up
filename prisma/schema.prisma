@@ -10,26 +10,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model sample{
-  id Int @id @default(autoincrement())
-  name String
-  age Int?
-}
-model signup{
+model users_table{
   id                Int       @id @default(autoincrement())
   work_email        String    @unique
   company_name      String ?
   password          String? 
-  confirm_password String
   mobile_number    String   ?    
   createdAt        DateTime?   @default(now())
   updatedAt        DateTime?   @updatedAt
 
 }
-model login{
-  work_email  String @unique
-  password String
-}
+
 // model User {
 //   email   String    @unique
 //   name    String?

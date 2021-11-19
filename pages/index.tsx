@@ -7,7 +7,6 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as Yup from 'yup';
 import "yup-phone";
 import styles from '../styles/Home.module.css'
-import type { NextApiRequest, NextApiResponse } from 'next'
 
 
 const Home: NextPage = () => {
@@ -61,6 +60,9 @@ const Home: NextPage = () => {
       body: JSON.stringify(total),
       method: "POST"
     })
+    const response:any = await lol.text()
+    if(response === "Email Already Exists") return alert("Email Already Exists")
+    router.push('/welcome')
     setIsSubmit(isSubmit => !isSubmit)
     return false
   }
