@@ -18,7 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
       })}
     catch(error){
-      res.send("Email Already exists")
+      res.send("Email Already Exists")
     }
   }
   if (req.method === "GET") {
