@@ -62,7 +62,7 @@ const Home: NextPage = () => {
     })
     const response:any = await lol.text()
     if(response === "Email Already Exists") return alert("Email Already Exists")
-    router.push('/welcome')
+    router.push('/login')
     setIsSubmit(isSubmit => !isSubmit)
     return false
   }
