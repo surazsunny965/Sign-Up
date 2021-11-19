@@ -1,5 +1,5 @@
 import router from "next/router";
-
+import styles from '../styles/Home.module.css'
 function loginPage(){
     router.push('/login')
 }

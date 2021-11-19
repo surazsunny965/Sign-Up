@@ -7,8 +7,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   let response: any
   const data = JSON.parse(req.body)
+  console.log(data)
   if (req.method === "POST") {
-    try {
       response = await prisma.users_table.create({
         data: {
           work_email: data.work_email,
@@ -17,10 +17,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           mobile_number: data.mobile_number
         }
       })
-    }
-    catch (error) {
-      return res.send("Email Already Exists")
-    }
   }
   if (req.method === "GET") {
     response = await prisma.users_table.findMany()

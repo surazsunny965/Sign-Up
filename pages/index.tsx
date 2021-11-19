@@ -56,7 +56,7 @@ const Home: NextPage = () => {
   }
 
   async function onSubmit(total: any) {
-    let lol = await fetch('/api/signup', {
+    let lol = await fetch('/api/hello', {
       body: JSON.stringify(total),
       method: "POST"
     })
